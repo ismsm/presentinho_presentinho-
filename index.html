@@ -1,0 +1,482 @@
+<DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mari & Wess - Nossa Retrospectiva</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: #121212;
+      color: #fff;
+      font-family: 'Quicksand', sans-serif;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .card {
+      background: #1e1e1e;
+      max-width: 600px;
+      width: 100%;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
+    }
+    .cover {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+    }
+    .info {
+      padding: 20px;
+      text-align: center;
+    }
+    .info h1 {
+      margin: 0;
+      font-size: 1.8em;
+      font-family: 'Great Vibes', cursive;
+      color: #1db954;
+    }
+    .info p {
+      margin: 10px 0 5px;
+      color: #ccc;
+    }
+    .highlight {
+      font-weight: bold;
+      color: #1db954;
+    }
+    .player {
+      padding: 0 20px 20px;
+    }
+    iframe {
+      border-radius: 12px;
+    }
+    .timeline {
+      list-style: none;
+      padding: 20px;
+      margin: 0;
+      color: #ccc;
+      background-color: #181818;
+      border-top: 1px solid #333;
+    }
+    .timeline h2 {
+      text-align: center;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+    .timeline li {
+      padding: 10px;
+      margin-bottom: 8px;
+      background: #2a2a2a;
+      border-radius: 10px;
+    }
+    .footer {
+      text-align: center;
+      font-size: 0.85em;
+      padding: 20px;
+      color: #888;
+      background-color: #0f0f0f;
+      border-top: 1px solid #222;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 20px;
+      background: #1db954;
+      color: white;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.4s ease-in-out, transform 0.3s ease;
+      cursor: pointer;
+      border: none;
+    }
+    .btn:hover {
+      background: #17a44c;
+      transform: scale(1.05);
+    }
+.contador-fofo {
+  text-align: center;
+  font-size: 1.3em;
+  color: #ffc0cb;
+  padding: 20px 10px 0;
+  font-family: 'Great Vibes', cursive;
+  animation: fadeIn 2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.8);
+    }
+
+    .modal-content {
+      background: #1e1e1e;
+      margin: 10% auto;
+      padding: 20px;
+      border-radius: 15px;
+      max-width: 600px;
+      color: white;
+      text-align: center;
+      position: relative;
+    }
+
+    .close {
+      color: #aaa;
+      position: absolute;
+      right: 20px;
+      top: 15px;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close:hover {
+      color: #1db954;
+    }
+
+    .gallery {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 15px;
+      flex-wrap: wrap;
+    }
+
+    .gallery img {
+      width: 150px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.1);
+    }.carta-de-amor {
+  padding: 30px 20px 10px;
+  color: #ffc0cb;
+  font-size: 1.2em;
+  font-family: 'Great Vibes', cursive;
+  text-align: center;
+  background-color: #1a1a1a;
+  border-top: 1px solid #333;
+}
+
+.carta-de-amor h2 {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 15px;
+}
+
+#textoDigitando::after {
+  content: '|';
+  animation: piscar 0.8s infinite;
+  color: #fff;
+}
+
+@keyframes piscar {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.quiz-container {
+  padding: 20px;
+  background: #1e1e1e;
+  border-top: 1px solid #333;
+  border-bottom: 1px solid #333;
+  color: #ccc;
+  text-align: left;
+  border-radius: 15px;
+  margin: 30px 20px;
+}
+
+.quiz-container h2 {
+  text-align: center;
+  color: #1db954;
+  font-family: 'Great Vibes', cursive;
+  font-size: 1.8em;
+  margin-bottom: 20px;
+}
+
+.question {
+  margin-bottom: 20px;
+}
+
+#quizResult {
+  background: #2a2a2a;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  color: #1db954;
+  font-weight: bold;
+  font-size: 1.2em;
+}#giftBox img {
+  animation: bounce 1.2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+  </style>
+  
+</head>
+<body>
+  <div class="card">
+    <div class="info">
+      <h1>“Não existe melodia mais doce do que o brilho dos seus olhinhos jabuticaba.”</h1>
+      <p><span class="highlight">Mari & Wess</span> – juntos desde 07.09.2024</p>
+    </div>
+    <div class="contador-fofo">
+  Estamos juntos há <span id="contadorDias" class="highlight">...</span> 💖
+</div>
+    <div class="player">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/3apbQXcMP7POf6cgciCWpA?utm_source=generator" width="100%" height="90" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
+    
+    <div style="text-align:center; padding: 0 20px 20px;">
+      <button id="btnFotos" class="btn">Ver Fotos</button>
+    </div>
+<div class="carta-de-amor">
+  <h2>Minha Cartinha pra Momo 💌</h2>
+  <p id="textoDigitando"></p>
+</div><div style="text-align:center; padding: 30px;">
+  <button id="sosButton" class="btn">📣 SOS Mozão</button>
+</div>
+
+<!-- Modal do SOS -->
+<div id="sosModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Ei, meu amor... 💌</h2>
+    <p style="font-size: 1.1em; line-height: 1.6;">
+      Tá tudo bem sentir demais às vezes, seja estresse ou ansiedade, tá bom?<br/>
+      Respira fundo, olha pra cima e lembra:<br/><br/>
+      <strong>Eu te amo muito, vuxê é incrível e nunca vai estar sozinho.</strong><br/><br/>
+      Eu amo vucê maise que coxinha recheada com amor! 🥹💖<br/>
+      Tô contigo sempre neném, inté quando o mundo parece pesado, lembre que tem uma mocinha que você é tudo pra ela.<br/>
+      Fecha os olhos, respira fundo e me imagina te abraçando bem forte e de enchendo de mordidinhas e meijinhos meu príncipe! ❤️🙈
+    </p>
+  </div>
+</div>
+<div style="text-align:center; padding: 30px;">
+  <h2 style="color: #fff; font-family: 'Great Vibes', cursive;">Um presente especial pra você...</h2>
+  <div id="giftBox" style="cursor: pointer; display: inline-block;">
+    <img id="giftImage" src="2575196.png" alt="Presente" width="120" />
+  </div>
+  <div id="giftMessage" style="display:none; margin-top: 20px; color: #1db954; font-size: 1.1em;">
+    <p>Esse presente não cabe em nenhuma caixa do mundo...</p>
+    <p><strong>...porque ele mora dentro do meu coração: <br/> <span style="font-size: 1.3em;">O meu amor por você. 💝</span></strong></p>
+  </div>
+</div>
+    <div class="timeline">
+      <h2>Nossos Momentos Especiais</h2>
+      <ul>
+        <li>1. Nossa primeira terça-feira em que saímos juntos.</li>
+        <li>2. Nosso primeiro encontro romântico na sorveteria.</li>
+        <li>3. Conversas sobre o futuro e filhos.</li>
+        <li>4. O nosso primeiro beijo.</li>
+        <li>5. Segunda visita à sorveteria, agora como casal.</li>
+        <li>6. O buquê de borboletinhas.</li>
+        <li>7. Maratonas de série juntinhos.</li>
+        <li>8. Nossa primeira noitinha de casal.</li>
+        <li>9. Quando apagamos juntinhos vendo série.</li>
+        <li>10. Quando ficamos sentimentais e logo depois... sapecagem!</li>
+      </ul>
+    </div>
+    <div class="quiz-container">
+  <h2>💞 O quanto você me conhece? 💞</h2>
+  <form id="quizForm">
+    <div class="question">
+      <p>1. Qual o sabor preferido de sorvete da Mari?</p>
+      <label><input type="radio" name="q1" value="c"> Menta</label><br>
+      <label><input type="radio" name="q1" value="a"> Chocolate</label><br>
+      <label><input type="radio" name="q1" value="b"> Morango</label>
+    </div>
+
+    <div class="question">
+      <p>2. Qual foi o primeiro apelido que Mari chamou Wess?</p>
+      <label><input type="radio" name="q2" value="a"> Wess</label><br>
+      <label><input type="radio" name="q2" value="b"> Morceguinho</label><br>
+      <label><input type="radio" name="q2" value="c"> Bixinho</label>
+    </div>
+
+    <div class="question">
+      <p>3. Quem falou "eu te amo" primeiro?</p>
+      <label><input type="radio" name="q3" value="a"> Wess</label><br>
+      <label><input type="radio" name="q3" value="b"> Mari</label>
+    </div>
+
+    <div class="question">
+      <p>4. Qual o filme preferido de Mari?</p>
+      <label><input type="radio" name="q4" value="b"> Percy Jackson</label><br>
+      <label><input type="radio" name="q4" value="a"> Maze Runner</label><br>
+      <label><input type="radio" name="q4" value="c"> Harry Potter</label>
+    </div>
+
+    <div class="question">
+      <p>5. Qual o emoji que Mari mais usa?</p>
+      <label><input type="radio" name="q5" value="a"> 🥹, 🥺 e 🙈</label><br>
+      <label><input type="radio" name="q5" value="b"> 🥹, 🙈 e 😈</label><br>
+      <label><input type="radio" name="q5" value="c"> 🥹, 🙈 e 😥</label>
+    </div>
+
+    <button type="submit" class="btn">Ver Resultado</button>
+  </form>
+
+  <div id="quizResult" style="display:none; margin-top:20px;"></div>
+</div>
+    <div class="footer">
+      Criado com todo amor para eternizar a nossa história. Te amo ♥️<br
+    </div>
+  </div>
+
+  <!-- Modal de fotos -->
+  <div id="modalFotos" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Minhas Fotos Favoritas</h2>
+      <div class="gallery">
+        <img src="IMG_20250327_213734_369.webp"alt="Foto 1" />
+      <img src="IMG_20250607_191959_511.jpg" alt="Foto 2" />
+        <img src="IMG_20250607_192002_132.jpg" alt="Foto 3" />
+        <img src="IMG_20250607_192004_417.jpg" alt= "Foto 4" />
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById("modalFotos");
+    const btn = document.getElementById("btnFotos");
+    const span = document.querySelector(".close");
+
+    btn.onclick = () => {
+      modal.style.display = "block";
+    };
+
+    span.onclick = () => {
+      modal.style.display = "none";
+    };
+
+    window.onclick = (event) => {
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    };
+  </script>
+  <script>
+  function atualizarContador() {
+    const dataInicio = new Date("2024-09-07");
+    const hoje = new Date();
+
+    dataInicio.setHours(0, 0, 0, 0);
+    hoje.setHours(0, 0, 0, 0);
+
+    const diffTempo = hoje - dataInicio;
+    const dias = Math.floor(diffTempo / (1000 * 60 * 60 * 24));
+
+    document.getElementById("contadorDias").textContent = `${dias} dias`;
+  }
+
+  atualizarContador();
+</script>
+<script>
+  const textoCompleto = "Desde que eu te conheci, comecei a acreditar mais no destino. Confesso que, eu nunca esperei encontrar alguém como você na minha vida. Talvez eu nem espesse encontrar alguém. Você mudou muitas coisas em mim, você criou boa parte da minha personalidade Moh e eu sou grata a você por isso todos os dias. Eu te amo muito, Amor! Eu te amo tanto quanto amo preto, tanto quanto eu amo o verão e tanto quanto eu amo Chase Atlantic. Você é minha vida, meu amor. Pra todo o sempre, eu e você.🫀";
+  const elemento = document.getElementById("textoDigitando");
+  let i = 0;
+
+  function digitarTexto() {
+    if (i < textoCompleto.length) {
+      elemento.innerHTML += textoCompleto.charAt(i);
+      i++;
+      setTimeout(digitarTexto, 60); // velocidade da digitação
+    }
+  }
+
+  digitarTexto();
+</script>
+<!-- ...seu conteúdo acima... -->
+
+<!-- Script do Quiz -->
+<script>
+  document.getElementById("quizForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const respostas = {
+      q1: "c", // Morango
+      q2: "a", // Morceguinho
+      q3: "a", // Wess
+      q4: "b", // Harry Potter
+      q5: "a"  // 🥹, 🥺 e 🙈
+    };
+
+    let acertos = 0;
+    for (let key in respostas) {
+      const userAnswer = document.querySelector(`input[name="${key}"]:checked`);
+      if (userAnswer && userAnswer.value === respostas[key]) {
+        acertos++;
+      }
+    }
+
+    const resultado = document.getElementById("quizResult");
+    resultado.style.display = "block";
+
+    if (acertos === 5) {
+      resultado.innerText = "UAU MOHZÃOOOO, VUXÊ CONHECE EU MUITO 🥹🙈❤️";
+    } else if (acertos >= 3) {
+      resultado.innerText = "KKWKWKW MOH, naum conhece sua momolada? 🙈";
+    } else {
+      resultado.innerText = "MOH?! 😭 tenta dnv pfv rs";
+    }
+  });
+</script>
+<script>
+  const sosModal = document.getElementById("sosModal");
+  const sosBtn = document.getElementById("sosButton");
+  const sosClose = sosModal.querySelector(".close");
+
+  sosBtn.onclick = () => {
+    sosModal.style.display = "block";
+  };
+
+  sosClose.onclick = () => {
+    sosModal.style.display = "none";
+  };
+
+  window.onclick = (event) => {
+    if (event.target === sosModal) {
+      sosModal.style.display = "none";
+    }
+  };
+</script>
+<script>
+  const giftBox = document.getElementById("giftBox");
+  const giftImage = document.getElementById("giftImage");
+  const giftMessage = document.getElementById("giftMessage");
+
+  giftBox.onclick = () => {
+    // muda a imagem do presente para um aberto
+    giftImage.src ="2575190.png"; // caixa aberta
+    giftMessage.style.display = "block";
+  };
+</script>
+</body>
+</html>
+</body>
+</html>
