@@ -234,6 +234,67 @@
     transform: translateY(-10px);
   }
 }
+#musica-dia {
+  text-align: center;
+  margin: 80px auto 40px;
+  padding: 20px;
+}
+
+#musica-btn {
+  background: linear-gradient(145deg, #ff8ac9, #ff68b8);
+  color: white;
+  border: none;
+  border-radius: 40px;
+  padding: 15px 35px;
+  font-size: 1.2em;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+#musica-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(255, 105, 180, 0.5);
+}
+
+#musica-btn::after {
+  content: "💗💞💓";
+  position: absolute;
+  bottom: -5px;
+  right: 10px;
+  font-size: 1.2em;
+  animation: floatHearts 3s infinite linear;
+}
+
+@keyframes floatHearts {
+  0% { transform: translateY(0); opacity: 0.8; }
+  50% { transform: translateY(-10px); opacity: 1; }
+  100% { transform: translateY(-20px); opacity: 0; }
+}
+
+#musica-letra {
+  margin-top: 20px;
+  font-style: italic;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.1em;
+  color: #ff3399;
+  animation: fadeIn 1s ease-in-out;
+}
+
+#musica-player {
+  margin-top: 15px;
+  display: none;
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
   </style>
   
 </head>
@@ -246,6 +307,41 @@
     <div class="contador-fofo">
   Estamos juntos há <span id="contadorDias" class="highlight">...</span> 💖
 </div>
+<div id="relógio-do-amor-container" style="text-align:center; margin: 40px 0;">
+  <div id="clock" style="font-size: 4em; color: #d6336c; font-weight: bold;"></div>
+  <div id="loveQuote" style="font-size: 1.5em; font-style: italic; margin-top: 10px; color: #fff;"></div>
+</div>
+
+<script>
+  const quotes = [
+    "Seu amor é meu tempo favorito. 💖",
+    "Com você, cada minuto é eternidade.",
+    "Nosso amor é o melhor relógio da vida.",
+    "O tempo para quando estou com você.",
+    "Amar você é a melhor hora do meu dia.",
+    "Meu coração bate no ritmo do seu amor.",
+    "Você é meu segundo favorito... depois do agora ao seu lado.",
+    "Cada segundo com você vale uma vida inteira.",
+    "Meu relógio só marca momentos ao seu lado.",
+    "O amor verdadeiro não tem hora para acabar.",
+    "Amar você é viver em tempo real o melhor da vida.",
+    "Você é meu tempo perfeito, sem pressa nem demora.",
+    "Eu conto as horas pra poder te ver."
+  ];
+
+  function updateClockAndQuote() {
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    document.getElementById('clock').textContent = `${hours}:${minutes}`;
+
+    const quoteIndex = now.getMinutes() % quotes.length;
+    document.getElementById('loveQuote').textContent = quotes[quoteIndex];
+  }
+
+  updateClockAndQuote();
+  setInterval(updateClockAndQuote, 60000);
+</script>
     <div class="player">
       <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/3apbQXcMP7POf6cgciCWpA?utm_source=generator" width="100%" height="90" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
     </div>
@@ -278,7 +374,7 @@
 <div style="text-align:center; padding: 30px;">
   <h2 style="color: #fff; font-family: 'Great Vibes', cursive;">Um presente especial pra você...</h2>
   <div id="giftBox" style="cursor: pointer; display: inline-block;">
-    <img id="giftImage" src="2575196.png" alt="Presente" width="120" />
+    <img id="giftImage" src="2575190.png" alt="Presente" width="120" />
   </div>
   <div id="giftMessage" style="display:none; margin-top: 20px; color: #1db954; font-size: 1.1em;">
     <p>Esse presente não cabe em nenhuma caixa do mundo...</p>
@@ -300,6 +396,30 @@
         <li>10. Quando ficamos sentimentais e logo depois... sapecagem!</li>
       </ul>
     </div>
+<section id="musica-do-dia" class="musica-dia" style="text-align: center; padding: 40px;">
+  <button id="musica-btn" style="
+    padding: 12px 24px;
+    background: linear-gradient(to right, #ff9a9e, #fad0c4);
+    border: none;
+    border-radius: 30px;
+    color: white;
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+  "> Música do Dia 💕</button>
+
+  <p id="musica-letra" style="
+    margin-top: 30px;
+    font-size: 1.2em;
+    font-style: italic;
+    color: #d6336c;
+    display: none;
+  "></p>
+
+  <div id="musica-player" style="margin-top: 20px; display: none;"></div>
+</section>
     <div class="quiz-container">
   <h2>💞 O quanto você me conhece? 💞</h2>
   <form id="quizForm">
@@ -346,11 +466,10 @@
       Criado com todo amor para eternizar a nossa história. Te amo ♥️<br
     </div>
   </div>
-
   <!-- Modal de fotos -->
   <div id="modalFotos" class="modal">
     <div class="modal-content">
-      <span class="close">&times;</span>
+    <span class="close" id="closeFotos">&times;</span>
       <h2>Minhas Fotos Favoritas</h2>
       <div class="gallery">
         <img src="IMG_20250327_213734_369.webp"alt="Foto 1" />
@@ -360,26 +479,26 @@
       </div>
     </div>
   </div>
+  <script/>
+    <script>
+  const modal = document.getElementById("modalFotos");
+  const btn = document.getElementById("btnFotos");
+  const closeFotos = document.getElementById("closeFotos");
 
-  <script>
-    const modal = document.getElementById("modalFotos");
-    const btn = document.getElementById("btnFotos");
-    const span = document.querySelector(".close");
+  btn.onclick = () => {
+    modal.style.display = "block";
+  };
 
-    btn.onclick = () => {
-      modal.style.display = "block";
-    };
+  closeFotos.onclick = () => {
+    modal.style.display = "none";
+  };
 
-    span.onclick = () => {
+  window.onclick = (event) => {
+    if (event.target === modal) {
       modal.style.display = "none";
-    };
-
-    window.onclick = (event) => {
-      if (event.target === modal) {
-        modal.style.display = "none";
-      }
-    };
-  </script>
+    }
+  };
+</script>
   <script>
   function atualizarContador() {
     const dataInicio = new Date("2024-09-07");
@@ -397,7 +516,7 @@
   atualizarContador();
 </script>
 <script>
-  const textoCompleto = "Desde que eu te conheci, comecei a acreditar mais no destino. Confesso que, eu nunca esperei encontrar alguém como você na minha vida. Talvez eu nem espesse encontrar alguém. Você mudou muitas coisas em mim, você criou boa parte da minha personalidade Moh e eu sou grata a você por isso todos os dias. Eu te amo muito, Amor! Eu te amo tanto quanto amo preto, tanto quanto eu amo o verão e tanto quanto eu amo Chase Atlantic. Você é minha vida, meu amor. Pra todo o sempre, eu e você.🫀";
+  const textoCompleto = "Desde que eu te conheci, comecei a acreditar mais no destino. Confesso que, eu nunca esperei encontrar alguém como você na minha vida. Talvez eu nem esperasse encontrar alguém. Você mudou muitas coisas em mim, você criou boa parte da minha personalidade Moh e eu sou grata a você por isso todos os dias. Eu te amo muito, Amor! Eu te amo tanto quanto amo preto, tanto quanto eu amo o verão e tanto quanto eu amo Chase Atlantic. Você é minha vida, meu amor. Pra todo o sempre, eu e você.🫀";
   const elemento = document.getElementById("textoDigitando");
   let i = 0;
 
@@ -419,10 +538,10 @@
     e.preventDefault();
 
     const respostas = {
-      q1: "c", // Morango
-      q2: "a", // Morceguinho
+      q1: "b", // Morango
+      q2: "b", // Morceguinho
       q3: "a", // Wess
-      q4: "b", // Harry Potter
+      q4: "c", // Harry Potter
       q5: "a"  // 🥹, 🥺 e 🙈
     };
 
@@ -466,15 +585,74 @@
   };
 </script>
 <script>
+  const musicas = [  
+    { id: "07DskqQ1NbTiotX1WIV7ob", trecho: "Seu coração é meu aeroporto..." },  
+    { id: "5GNT8tXCqPop8K4t3hvVaH", trecho: "Vamos ficar de love o dia inteiro?💕" },  
+    { id: "2xql0pid3EUwW38AsywxhV", trecho: "Eu vejo seu reflexo em meus olhos 💗" },  
+    { id: "0GsQzTpegvifzQZ4wXsCZ2", trecho: "2 pessoas,3 palavras e 7 letras." },  
+    { id: "7FikD4RFpmSZIvoP3rRwsS", trecho: "Como se eu fosse o culpado, como se eu fosse o culpido." },  
+    { id: "2TE9rkhJYDctxgzak0AnSb", trecho: "Eu viajei no seu olhar...💕" },  
+    { id: "7xVSNhAUQhUIpwfR6lTOwA", trecho: "Eu já deitei no seu sorriso💫" },  
+    { id: "7bbYT48HWWIbL3YKmtMNzn", trecho: "forgive me father,i have sinned." },  
+    { id: "1XCKlzIqaehohdUTihetGN", trecho: "Pra esquecer a vida, filminho comigo...🎵" },  
+    { id: "3EaJDYHA0KnX88JvDhL9oa", trecho: "Baby, i love my boy..." }  
+  ];
+
+  const btnMusica = document.getElementById("musica-btn");  
+  const musicaLetra = document.getElementById("musica-letra");  
+  const musicaPlayer = document.getElementById("musica-player");
+
+  function tocarMusica(m) {
+    musicaLetra.textContent = m.trecho;
+    musicaPlayer.innerHTML = `
+      <iframe src="https://open.spotify.com/embed/track/${m.id}" width="100%" height="80" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    `;
+    musicaLetra.style.display = "block";
+    musicaPlayer.style.display = "block";
+  }
+
+  btnMusica.addEventListener("click", () => {
+    const hoje = new Date().toISOString().slice(0, 10);
+    const ultimaData = localStorage.getItem("musicaData");
+    const ultimaId = localStorage.getItem("musicaId");
+
+    if (ultimaData === hoje && ultimaId) return;
+
+    const index = Math.floor(Math.random() * musicas.length);
+    const selecionada = musicas[index];
+
+    localStorage.setItem("musicaData", hoje);
+    localStorage.setItem("musicaId", selecionada.id);
+    localStorage.setItem("musicaTrecho", selecionada.trecho);
+
+    tocarMusica(selecionada);
+    btnMusica.disabled = true;
+    btnMusica.style.opacity = "0.6";
+    btnMusica.style.cursor = "not-allowed";
+  });
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const hoje = new Date().toISOString().slice(0, 10);
+    const ultimaData = localStorage.getItem("musicaData");
+    const id = localStorage.getItem("musicaId");
+    const trecho = localStorage.getItem("musicaTrecho");
+
+    if (ultimaData === hoje && id && trecho) {
+      tocarMusica({ id, trecho });
+      btnMusica.disabled = true;
+      btnMusica.style.opacity = "0.6";
+      btnMusica.style.cursor = "not-allowed";
+    }
+  });
+</script>
+<script>
   const giftBox = document.getElementById("giftBox");
-  const giftImage = document.getElementById("giftImage");
   const giftMessage = document.getElementById("giftMessage");
 
-  giftBox.onclick = () => {
-    // muda a imagem do presente para um aberto
-    giftImage.src ="2575190.png"; // caixa aberta
+  giftBox.addEventListener("click", () => {
     giftMessage.style.display = "block";
-  };
+    giftBox.style.display = "none";
+  });
 </script>
 </body>
 </html>
